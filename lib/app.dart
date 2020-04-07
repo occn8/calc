@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget customBut(String custText) {
     var butHeight = MediaQuery.of(context).size.height * 0.1;
-    var butWidth = MediaQuery.of(context).size.height * 0.11;
+    var butWidth = MediaQuery.of(context).size.height * 0.115;
     Color butColor = Colors.grey[700];
     return Container(
       height: butHeight,
@@ -71,8 +71,6 @@ class _HomePageState extends State<HomePage> {
       child: FlatButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
-          // side: BorderSide(
-          //     color: Colors.black, width: 1, style: BorderStyle.solid),
         ),
         padding: EdgeInsets.all(10.0),
         onPressed: () => buttonPressed(custText),
@@ -100,9 +98,10 @@ class _HomePageState extends State<HomePage> {
       ),
       child: FlatButton(
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-            side: BorderSide(
-                color: Colors.black, width: 1, style: BorderStyle.solid)),
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(
+              color: Colors.black, width: 1, style: BorderStyle.solid),
+        ),
         padding: EdgeInsets.all(10.0),
         onPressed: () => buttonPressed(custText),
         child: Text(
@@ -118,7 +117,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget customButClear(String custText) {
     var butHeight = MediaQuery.of(context).size.height * 0.11;
-    var butWidth = MediaQuery.of(context).size.height * 0.12;
+    var butWidth = MediaQuery.of(context).size.height * 0.125;
     Color butColor = Colors.orange[600];
     return Container(
       height: butHeight,
@@ -129,9 +128,10 @@ class _HomePageState extends State<HomePage> {
       ),
       child: FlatButton(
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-            side: BorderSide(
-                color: Colors.black, width: 1, style: BorderStyle.solid)),
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(
+              color: Colors.transparent, width: 1, style: BorderStyle.solid),
+        ),
         padding: EdgeInsets.all(10.0),
         onPressed: () => buttonPressed(custText),
         child: Text(
@@ -211,73 +211,82 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Expanded(
-                flex: 3,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: cardColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  margin: EdgeInsets.all(5),
-                  padding: EdgeInsets.all(5),
-                  width: _width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Expanded(
-                        flex: 1,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            customButClear("C"),
-                            customBut("7"),
-                            customBut("4"),
-                            customBut("1"),
-                            customBut(" "),
-                          ],
-                        ),
+              flex: 3,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: cardColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                margin: EdgeInsets.all(5),
+                padding: EdgeInsets.all(5),
+                width: _width,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          customButClear("C"),
+                          customButClear("⌫"),
+                          customButExp("%"),
+                          customButExp("÷"),
+                        ],
                       ),
-                      Expanded(
-                        flex: 1,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            customButClear("⌫"),
-                            customBut("8"),
-                            customBut("5"),
-                            customBut("2"),
-                            customBut("0"),
-                          ],
-                        ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          customBut("7"),
+                          customBut("8"),
+                          customBut("9"),
+                          customButExp("×"),
+                        ],
                       ),
-                      Expanded(
-                        flex: 1,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            customButExp("%"),
-                            customBut("9"),
-                            customBut("6"),
-                            customBut("3"),
-                            customBut("."),
-                          ],
-                        ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          customBut("4"),
+                          customBut("5"),
+                          customBut("6"),
+                          customButExp("-"),
+                        ],
                       ),
-                      Expanded(
-                        flex: 1,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            customButExp("÷"),
-                            customButExp("×"),
-                            customButExp("-"),
-                            customButExp("+"),
-                            customButExp("="),
-                          ],
-                        ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          customBut("1"),
+                          customBut("2"),
+                          customBut("3"),
+                          customButExp("+"),
+                        ],
                       ),
-                    ],
-                  ),
-                ))
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          customBut(""),
+                          customBut("0"),
+                          customBut("."),
+                          customButExp("="),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
