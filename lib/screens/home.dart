@@ -38,7 +38,6 @@ class _HomePageState extends State<HomePage> {
         try {
           Parser p = Parser();
           Expression exp = p.parse(expression);
-
           ContextModel cm = ContextModel();
           result = '${exp.evaluate(EvaluationType.REAL, cm)}';
         } catch (e) {
@@ -56,7 +55,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  Widget customBut(String custText) {
+  Widget customButton(String custText) {
     var butHeight = MediaQuery.of(context).size.height * 0.1;
     var butWidth = MediaQuery.of(context).size.height * 0.115;
     Color butColor = Colors.grey[700];
@@ -85,7 +84,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget customButExp(String custText) {
+  Widget customButtonExp(String custText) {
     var butHeight = MediaQuery.of(context).size.height * 0.11;
     var butWidth = MediaQuery.of(context).size.height * 0.12;
     Color butColor = Colors.white70;
@@ -115,7 +114,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget customButClear(String custText) {
+  Widget customButtonClear(String custText) {
     var butHeight = MediaQuery.of(context).size.height * 0.11;
     var butWidth = MediaQuery.of(context).size.height * 0.125;
     Color butColor = Colors.orange[600];
@@ -228,10 +227,10 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          customButClear("C"),
-                          customButClear("⌫"),
-                          customButExp("%"),
-                          customButExp("÷"),
+                          customButtonClear("C"),
+                          customButtonClear("⌫"),
+                          customButtonExp("%"),
+                          customButtonExp("÷"),
                         ],
                       ),
                     ),
@@ -240,10 +239,10 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          customBut("7"),
-                          customBut("8"),
-                          customBut("9"),
-                          customButExp("×"),
+                          customButton("7"),
+                          customButton("8"),
+                          customButton("9"),
+                          customButtonExp("×"),
                         ],
                       ),
                     ),
@@ -252,10 +251,10 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          customBut("4"),
-                          customBut("5"),
-                          customBut("6"),
-                          customButExp("-"),
+                          customButton("4"),
+                          customButton("5"),
+                          customButton("6"),
+                          customButtonExp("-"),
                         ],
                       ),
                     ),
@@ -264,10 +263,10 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          customBut("1"),
-                          customBut("2"),
-                          customBut("3"),
-                          customButExp("+"),
+                          customButton("1"),
+                          customButton("2"),
+                          customButton("3"),
+                          customButtonExp("+"),
                         ],
                       ),
                     ),
@@ -276,10 +275,10 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          customBut(""),
-                          customBut("0"),
-                          customBut("."),
-                          customButExp("="),
+                          customButton(""),
+                          customButton("0"),
+                          customButton("."),
+                          customButtonExp("="),
                         ],
                       ),
                     ),
