@@ -1,12 +1,41 @@
+import 'package:calc/providers/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
+  final bool isDarkThemeEnabled;
+  final ThemeBloc bloc;
+
+  HomePage(this.isDarkThemeEnabled, this.bloc);
   @override
-  _HomePageState createState() => _HomePageState();
+  Widget build(BuildContext context) {
+    Color bgColor = Colors.grey[900];
+    return Scaffold(
+      backgroundColor: bgColor,
+      body: Calculator(),
+      drawer: Container(
+        color: Theme.of(context).cardColor,
+        width: 250,
+        child: ListView(
+          children: <Widget>[
+            ListTile(
+              title: Text("Dark Theme"),
+              trailing: Switch(
+                  value: isDarkThemeEnabled, onChanged: bloc.changeTheTheme),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }
 
-class _HomePageState extends State<HomePage> {
+class Calculator extends StatefulWidget {
+  @override
+  _CalculatorState createState() => _CalculatorState();
+}
+
+class _CalculatorState extends State<Calculator> {
   String equation = "0";
   String result = "0";
   String expression = "";
@@ -148,146 +177,142 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var _height = MediaQuery.of(context).size.height;
     var _width = MediaQuery.of(context).size.width;
-    Color bgColor = Colors.grey[900];
     // Color cardDisplayColor = Colors.grey[700];
     Color cardColor = Colors.grey[800];
 
-    return Scaffold(
-      backgroundColor: bgColor,
-      body: Container(
-        height: _height,
-        width: _width,
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              flex: 2,
-              child: Container(
-                width: _width,
-                decoration: BoxDecoration(
-                  color: cardColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        reverse: true,
-                        children: <Widget>[
-                          Container(
-                              alignment: Alignment.centerRight,
-                              padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
-                              child: Text(
-                                equation,
-                                style: TextStyle(
-                                    fontSize: equationFontSize,
-                                    color: Colors.grey[400]),
-                              )),
-                        ],
-                      ),
+    return Container(
+      height: _height,
+      width: _width,
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            flex: 2,
+            child: Container(
+              width: _width,
+              decoration: BoxDecoration(
+                color: cardColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      reverse: true,
+                      children: <Widget>[
+                        Container(
+                            alignment: Alignment.centerRight,
+                            padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
+                            child: Text(
+                              equation,
+                              style: TextStyle(
+                                  fontSize: equationFontSize,
+                                  color: Colors.grey[400]),
+                            )),
+                      ],
                     ),
-                    Expanded(
-                      flex: 1,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        reverse: true,
-                        children: <Widget>[
-                          Container(
-                              alignment: Alignment.centerRight,
-                              padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
-                              child: Text(
-                                result,
-                                style: TextStyle(
-                                    fontSize: resultFontSize,
-                                    color: Colors.white),
-                              )),
-                        ],
-                      ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      reverse: true,
+                      children: <Widget>[
+                        Container(
+                            alignment: Alignment.centerRight,
+                            padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
+                            child: Text(
+                              result,
+                              style: TextStyle(
+                                  fontSize: resultFontSize,
+                                  color: Colors.white),
+                            )),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            Expanded(
-              flex: 3,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: cardColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                margin: EdgeInsets.all(5),
-                padding: EdgeInsets.all(5),
-                width: _width,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          customButtonClear("C"),
-                          customButtonClear("⌫"),
-                          customButtonExp("%"),
-                          customButtonExp("÷"),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          customButton("7"),
-                          customButton("8"),
-                          customButton("9"),
-                          customButtonExp("×"),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          customButton("4"),
-                          customButton("5"),
-                          customButton("6"),
-                          customButtonExp("-"),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          customButton("1"),
-                          customButton("2"),
-                          customButton("3"),
-                          customButtonExp("+"),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          customButton(""),
-                          customButton("0"),
-                          customButton("."),
-                          customButtonExp("="),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+          ),
+          Expanded(
+            flex: 3,
+            child: Container(
+              decoration: BoxDecoration(
+                color: cardColor,
+                borderRadius: BorderRadius.circular(10),
               ),
-            )
-          ],
-        ),
+              margin: EdgeInsets.all(5),
+              padding: EdgeInsets.all(5),
+              width: _width,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        customButtonClear("C"),
+                        customButtonClear("⌫"),
+                        customButtonExp("%"),
+                        customButtonExp("÷"),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        customButton("7"),
+                        customButton("8"),
+                        customButton("9"),
+                        customButtonExp("×"),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        customButton("4"),
+                        customButton("5"),
+                        customButton("6"),
+                        customButtonExp("-"),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        customButton("1"),
+                        customButton("2"),
+                        customButton("3"),
+                        customButtonExp("+"),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        customButton(""),
+                        customButton("0"),
+                        customButton("."),
+                        customButtonExp("="),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
